@@ -68,6 +68,7 @@ module.exports = {
             "@mavrin/remark-typograf",
             {
                 typograf,
+                keywords: [":(", "TL;DR"],
                 builtIn: false
             }
         ]
