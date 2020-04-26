@@ -28,7 +28,7 @@ tags:
 
 ## `once()`
 
-- [once(fn)](https://jsfiddle.net/cristi_salcescu/zpLeLp0v/) создает экземпляр функции, которая должна быть выполнена только один раз. Паттерн может быть использован, например, для инициализации, когда нужно быть уверенным в единичном запуске функциональности, даже если сама функция вызвана в нескольких местах.
+- [once(fn)](https://jsfiddle.net/cristi_salcescu/zpLeLp0v/) создает экземпляр функции, которая должна быть выполнена только один раз. Паттерн может быть использован, например, для инициализации, когда нужно быть уверенным в единичном запуске функциональности, даже если сама функция вызвана в нескольких местах.
 
 ```js
 function once(fn){
@@ -157,13 +157,13 @@ logInfo('here is a message');
 
 ## Заключение
 
-Применение указанных функций помогает понять принципы работы декораторов и саму идею инкапсуляции логики внутри них.
+Применение указанных функций помогает понять принципы работы декораторов и саму идею инкапсуляции логики внутри них.
 
 Декораторы — мощный инструмент расширения функциональности без изменения исходной функции. Это отличный путь переиспользовать код, и он соответствует функциональной парадигме программирования.
 
-### Больше о ФП в JavaScript
+### Больше о ФП в JavaScript
 
 - [How point-free composition will make you a better functional programmer](https://medium.com/p/33dcb910303a)
 - [You will finally understand what Closure is](https://medium.com/p/13ba11825319)
-- [Class vs Factory function: exploring the way forward](https://medium.com/p/73258b6a8d15) (см. [перевод](https://medium.com/@kanby/класс-vs-фабрика-объектов-перспективы-9b4c696823c8)).
+- [Class vs Factory function: exploring the way forward](https://medium.com/p/73258b6a8d15) (см. [перевод](https://medium.com/@kanby/класс-vs-фабрика-объектов-перспективы-9b4c696823c8)).
 - [Make your code easier to read with Functional Programming](https://medium.com/p/94fb8cc69f9d)

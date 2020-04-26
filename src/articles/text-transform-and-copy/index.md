@@ -10,7 +10,7 @@ tags:
     - css
 ---
 
-Что происходит при копировании текста с `text-transform`.
+Что происходит при копировании текста с `text-transform`.
 
 <figure>
     <img src="images/1.jpg" alt="">
@@ -19,7 +19,7 @@ tags:
     </figcaption>
 </figure>
 
-В CSS есть свойство [`text-transform`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform). С помощью него можно менять регистр текста: можно преобразовать текст в ПРОПИСНЫЕ, строчные или Капитализировать Только Первые Буквы Слов. Это делается значениями `uppercase`, `lowercase` и `capitalize`, соответственно. Помимо них есть значения `full-width` и `full-size-kana`, про которые мы в этот раз говорить не будем.
+В CSS есть свойство [`text-transform`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform). С помощью него можно менять регистр текста: можно преобразовать текст в ПРОПИСНЫЕ, строчные или Капитализировать Только Первые Буквы Слов. Это делается значениями `uppercase`, `lowercase` и `capitalize`, соответственно. Помимо них есть значения `full-width` и `full-size-kana`, про которые мы в этот раз говорить не будем.
 
 <p style="text-transform: uppercase">Пример текста с <code>text-transform: uppercase</code></p>
 <p style="text-transform: lowercase">Пример текста с <code>text-transform: lowercase</code></p>
@@ -52,4 +52,4 @@ tags:
     </figcaption>
 </figure>
 
-Сейчас баг в Firefox закрыт как «wontfix», баг в WebKit по-прежнему открыт. Но уже можно надеяться, что скоро его поправят, и копирование текста с `text-transform` начнет работать во всех браузерах одинаково.
+Сейчас баг в Firefox закрыт как «wontfix», баг в WebKit по-прежнему открыт. Но уже можно надеяться, что скоро его поправят, и копирование текста с `text-transform` начнет работать во всех браузерах одинаково.

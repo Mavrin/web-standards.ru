@@ -15,9 +15,9 @@ tags:
     - js
 ---
 
-В предыдущей [статье](https://justmarkup.com/log/2017/02/introducing-iss-observer-com/) об [iss-observer.com](https://iss-observer.com/) я обещал рассказать о технической стороне реализации пуш-уведомлений. Изначально я планировал сконцентрироваться на проблемах, с которыми пришлось иметь дело в процессе работы над [iss-observer.com](https://iss-observer.com/). Теперь я думаю, будет полезнее посвятить материал базовым вопросам, и уточнять детали, где это необходимо. Обращаю ваше внимание, что фронтенд частично опирается на [этот урок](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/?hl=en).
+В предыдущей [статье](https://justmarkup.com/log/2017/02/introducing-iss-observer-com/) об [iss-observer.com](https://iss-observer.com/) я обещал рассказать о технической стороне реализации пуш-уведомлений. Изначально я планировал сконцентрироваться на проблемах, с которыми пришлось иметь дело в процессе работы над [iss-observer.com](https://iss-observer.com/). Теперь я думаю, будет полезнее посвятить материал базовым вопросам, и уточнять детали, где это необходимо. Обращаю ваше внимание, что фронтенд частично опирается на [этот урок](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/?hl=en).
 
-_Если вы хотите углубиться в исходный код, то смотрите в [GitHub-репозиторий](https://github.com/justmarkup/demos/tree/gh-pages/push-notifications) и на [пример](https://push-notifications-vwursywdxa.now.sh), демонстрирующий его работу._
+_Если вы хотите углубиться в исходный код, то смотрите в [GitHub-репозиторий](https://github.com/justmarkup/demos/tree/gh-pages/push-notifications) и на [пример](https://push-notifications-vwursywdxa.now.sh), демонстрирующий его работу._
 
 <img src="images/1.jpg" alt="">
 
@@ -34,9 +34,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 }
 ```
 
-Прежде чем писать код, выполним ряд требований. Нам потребуются Application Server Keys (VAPID Key). Получаем их [здесь](https://web-push-codelab.appspot.com), либо с помощью библиотеки web-push. Кстати, она нам еще потребуется для бэкенд-части. Устанавливаем библиотеку: `npm install -g web-push`, генерируем ключи: `web-push generate-vapid-keys`. В независимости от способа в результате у вас должны быть **закрытый ключ** (private key) и **открытый ключ** (public key). Сохраните их в надежном месте.
+Прежде чем писать код, выполним ряд требований. Нам потребуются Application Server Keys (VAPID Key). Получаем их [здесь](https://web-push-codelab.appspot.com), либо с помощью библиотеки web-push. Кстати, она нам еще потребуется для бэкенд-части. Устанавливаем библиотеку: `npm install -g web-push`, генерируем ключи: `web-push generate-vapid-keys`. В независимости от способа в результате у вас должны быть **закрытый ключ** (private key) и **открытый ключ** (public key). Сохраните их в надежном месте.
 
-_До появления спецификации Application server key/VAPID первые браузеры (Chrome, Opera) реализовали функциональность пуш-уведомлений с помощью [Google Cloud Messaging](https://developers.google.com/cloud-messaging/). Все современные браузеры, за исключением [Samsung Internet](https://github.com/web-push-libs/web-push#browser-support), поддерживают VAPID. Поэтому в этой статье я не буду касаться GCM. Как добавить поддержку для Samsung Internet и старых версий Chrome и Opera — читайте [здесь](https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/)._
+_До появления спецификации Application server key/VAPID первые браузеры (Chrome, Opera) реализовали функциональность пуш-уведомлений с помощью [Google Cloud Messaging](https://developers.google.com/cloud-messaging/). Все современные браузеры, за исключением [Samsung Internet](https://github.com/web-push-libs/web-push#browser-support), поддерживают VAPID. Поэтому в этой статье я не буду касаться GCM. Как добавить поддержку для Samsung Internet и старых версий Chrome и Opera — читайте [здесь](https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/)._
 
 Посмотрим на push.js. Здесь мы регистрируем сервис-воркер и подписываемся на уведомления:
 
@@ -176,7 +176,7 @@ navigator.serviceWorker.register('sw.js')
 });
 ```
 
-В первую очередь создаем константу `addServiceKey`: ей присваиваем значение с открытым ключ VAPID (о нем мы говорили выше). Также создаем несколько элементов и переменных. Записываем функцию `urlB64ToUint8Array()`: она понадобится для конвертации ключа из base64 в [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array).
+В первую очередь создаем константу `addServiceKey`: ей присваиваем значение с открытым ключ VAPID (о нем мы говорили выше). Также создаем несколько элементов и переменных. Записываем функцию `urlB64ToUint8Array()`: она понадобится для конвертации ключа из base64 в [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array).
 
 Затем декларируем функцию `updatePushButton()`. Мы будем вызывать её каждый раз при изменении статуса уведомлений, чтобы обновить отвечающие за него элементы интерфейса.
 
@@ -211,7 +211,7 @@ serviceWorkerRegistration.pushManager.subscribe({
 
 После этого, создаем функцию отписки `unsubscribeUser()`. Используем метод `getSubscription()` объекта PushManager, с его помощью получаем детали подписки, которые отправляем на сервер (снова Fetch API). На этот раз, чтобы удалить её базы.
 
-Записываем функцию `initPush()`. В ней — событие для кнопки `pushButton`, которое вызывает функцию подписки или отписки в зависимости от текущего состояния. После, не забываем обновить это состояние. Использованный в примере код можно найти на [GitHub](https://github.com/justmarkup/demos/blob/gh-pages/push-notifications/public/script/push.js).
+Записываем функцию `initPush()`. В ней — событие для кнопки `pushButton`, которое вызывает функцию подписки или отписки в зависимости от текущего состояния. После, не забываем обновить это состояние. Использованный в примере код можно найти на [GitHub](https://github.com/justmarkup/demos/blob/gh-pages/push-notifications/public/script/push.js).
 
 Последний шаг — регистрация сервис-воркера.
 
@@ -242,9 +242,9 @@ self.addEventListener('push', function(event) {
 });
 ```
 
-Начнем с `push`. Проверяем содержимое объекта `notificationData` (свойства `title`, `body` и `icon`), и, если не находим их, присваиваем дефолтные значения. После вызываем метод `showNotification`, он покажет уведомление пользователю.
+Начнем с `push`. Проверяем содержимое объекта `notificationData` (свойства `title`, `body` и `icon`), и, если не находим их, присваиваем дефолтные значения. После вызываем метод `showNotification`, он покажет уведомление пользователю.
 
-_В дополнение к трём перечисленным свойствам могут использоваться и другие, например, `badge`, `tag`, `vibrate`. На момент написания этой статьи (февраль 2017) многие из них поддерживались только некоторыми браузерами. `title`, `body` и `icon`, доступных во всех браузерах, поэтому ограничимся ими._
+_В дополнение к трём перечисленным свойствам могут использоваться и другие, например, `badge`, `tag`, `vibrate`. На момент написания этой статьи (февраль 2017) многие из них поддерживались только некоторыми браузерами. `title`, `body` и `icon`, доступных во всех браузерах, поэтому ограничимся ими._
 
 ```js
 self.addEventListener('notificationclick', function(event) {
@@ -271,7 +271,7 @@ self.addEventListener('notificationclick', function(event) {
 
 Переходим к серверной части, в которой мы используем библиотеку [web-push](https://github.com/web-push-libs/web-push). В нашем случае это реализация библиотеки для Node.js, но версии для PHP, Java и C# также доступны.
 
-_Я предполагаю, что у вас есть базовые знания Node.js и опыт использования Express. В ином случае, я рекомендую вам ознакомиться с ними прежде чем продолжить._
+_Я предполагаю, что у вас есть базовые знания Node.js и опыт использования Express. В ином случае, я рекомендую вам ознакомиться с ними прежде чем продолжить._
 
 Итак, в первую очередь:
 
@@ -336,9 +336,9 @@ _Прим. переводчика: `endpoint` — это уникальный U
 
 - данные подписки, получаемые от браузера;
 - информацию для пользователя (заголовок, сообщение, иконка — свойства `title`, `body`, `icon` соответственно);
-- объект `options`, [см. подробнее](https://github.com/web-push-libs/web-push#sendnotificationpushsubscription-payload-options).
+- объект `options`, [см. подробнее](https://github.com/web-push-libs/web-push#sendnotificationpushsubscription-payload-options).
 
-_TTL (Time To Live) — срок жизни уведомления — по умолчанию четыре недели. Это значит, что оно будет ожидать появления пользователя онлайн в течение этого срока. Например, если вы отправили уведомление пользователю в офлайне, и он подключится к сети только через две недели, сообщение все равно будет доставлено. В моем случае разумно изменить TTL на более короткий срок._
+_TTL (Time To Live) — срок жизни уведомления — по умолчанию четыре недели. Это значит, что оно будет ожидать появления пользователя онлайн в течение этого срока. Например, если вы отправили уведомление пользователю в офлайне, и он подключится к сети только через две недели, сообщение все равно будет доставлено. В моем случае разумно изменить TTL на более короткий срок._
 
 ```js
 app.post('/push/unsubscribe', function (req, res) {
@@ -360,8 +360,8 @@ app.post('/push/unsubscribe', function (req, res) {
 
 Вероятно, каждый из вас столкнется со своим случаем применения пуш-уведомлений, и просто скопировать код не получится. Однако я надеюсь, что этот урок поможет вам реализовать искомую функциональность как на стороне клиента, так и на стороне сервера.
 
-[Демо проекта](https://push-notifications-vwursywdxa.now.sh), исходный код опубликован на [GitHub](https://github.com/justmarkup/demos/tree/gh-pages/push-notifications).
+[Демо проекта](https://push-notifications-vwursywdxa.now.sh), исходный код опубликован на [GitHub](https://github.com/justmarkup/demos/tree/gh-pages/push-notifications).
 
-Для более глубокого погружения в тему рекомендую бесплатную книгу [Web Push Book](https://web-push-book.gauntface.com) и примеры на [servicewore.rs](https://serviceworke.rs/).
+Для более глубокого погружения в тему рекомендую бесплатную книгу [Web Push Book](https://web-push-book.gauntface.com) и примеры на [servicewore.rs](https://serviceworke.rs/).
 
-Если вам есть что спросить, или есть что добавить, пишите в [Twitter](https://twitter.com/justmarkup) или по [электронной почте](mailto:hallo@justmarkup.com).
+Если вам есть что спросить, или есть что добавить, пишите в [Twitter](https://twitter.com/justmarkup) или по [электронной почте](mailto:hallo@justmarkup.com).

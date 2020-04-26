@@ -18,7 +18,7 @@ tags:
 
 По мере того, как мы создаём сайты, всё более и более зависящие от JavaScript, мы иногда теряем производительность. В этой статье я расскажу про соблюдение некоторых правил, которые могут помочь, если вы хотите, чтобы ваш интерактивный сайт быстро загружался на мобильных устройствах.
 
-**TL;DR** Меньше кода = меньше парсить и компилировать + меньше передавать + меньше распаковывать
+**TL; DR** Меньше кода = меньше парсить и компилировать + меньше передавать + меньше распаковывать
 
 ### Сеть
 
@@ -34,9 +34,9 @@ tags:
 
 - Отправляйте только тот код, который нужен пользователю. Разделение кода может вам в этом помочь.
 - [Сокращайте код](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer) ([uglify](https://github.com/mishoo/UglifyJS) для ES5, [babel-minify](https://github.com/babel/minify) или [uglify-es](https://www.npmjs.com/package/uglify-es) для ES6)
-- [Сжимайте сильнее](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer) (используйте [Brotli](https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/), [q11](https://twitter.com/paulcalvano/status/924660429846208514), Zopfli или gzip). Brotli превосходит gzip по степени сжатия. Это помогло CertSimple [сэкономить 17%](https://speakerdeck.com/addyosmani/the-browser-hackers-guide-to-instant-loading?slide=30) на размере сжатого JS и LinkedIn [сэкономить 4%](https://engineering.linkedin.com/blog/2017/05/boosting-site-speed-using-brotli-compression) на времени загрузки.
-- Удаляйте неиспользуемый код. Его можно отследить в [DevTools во вкладке Coverage](https://developers.google.com/web/updates/2017/04/devtools-release-notes). Посмотрите в сторону [tree-shaking](https://webpack.js.org/guides/tree-shaking/), [Closure Compiler](https://developers.google.com/closure/compiler/) и других библиотек оптимизации библиотек, вроде [lodash-babel-plugin](https://github.com/lodash/babel-plugin-lodash) или [ContextReplacementPlugin](https://iamakulov.com/notes/webpack-front-end-size-caching/#moment-js) для Webpack — особенно для таких библиотек, как Moment.js. Используйте babel-preset-env и browserlist, чтобы избежать транспиляции новых возможностей, которые уже доступны в современных браузерах. Продвинутые разработчики уже умеют делать подробный [анализ бандлов ](https://github.com/webpack-contrib/webpack-bundle-analyzer)[Webpack](https://github.com/webpack-contrib/webpack-bundle-analyzer) для избавления от ненужных зависимостей.
-- [Кэшируйте](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching) , чтобы избежать лишней нагрузки на сеть. Определите оптимальное время жизни для скриптов (max-age) и используйте токены ETag, чтобы избежать загрузки неизменённых данных. Сервис-воркеры позволят сделать ваше приложение более независимым от сети и дадут доступ к [кэшированию кода в V8](https://v8project.blogspot.com/2015/07/code-caching.html). Узнайте о долгосрочном кэшировании — [хэширование имени файла](https://webpack.js.org/guides/caching/).
+- [Сжимайте сильнее](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer) (используйте [Brotli](https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/), [q11](https://twitter.com/paulcalvano/status/924660429846208514), Zopfli или gzip). Brotli превосходит gzip по степени сжатия. Это помогло CertSimple [сэкономить 17%](https://speakerdeck.com/addyosmani/the-browser-hackers-guide-to-instant-loading?slide=30) на размере сжатого JS и LinkedIn [сэкономить 4%](https://engineering.linkedin.com/blog/2017/05/boosting-site-speed-using-brotli-compression) на времени загрузки.
+- Удаляйте неиспользуемый код. Его можно отследить в [DevTools во вкладке Coverage](https://developers.google.com/web/updates/2017/04/devtools-release-notes). Посмотрите в сторону [tree-shaking](https://webpack.js.org/guides/tree-shaking/), [Closure Compiler](https://developers.google.com/closure/compiler/) и других библиотек оптимизации библиотек, вроде [lodash-babel-plugin](https://github.com/lodash/babel-plugin-lodash) или [ContextReplacementPlugin](https://iamakulov.com/notes/webpack-front-end-size-caching/#moment-js) для Webpack — особенно для таких библиотек, как Moment.js. Используйте babel-preset-env и browserlist, чтобы избежать транспиляции новых возможностей, которые уже доступны в современных браузерах. Продвинутые разработчики уже умеют делать подробный [анализ бандлов](https://github.com/webpack-contrib/webpack-bundle-analyzer)[Webpack](https://github.com/webpack-contrib/webpack-bundle-analyzer) для избавления от ненужных зависимостей.
+- [Кэшируйте](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching), чтобы избежать лишней нагрузки на сеть. Определите оптимальное время жизни для скриптов (max-age) и используйте токены ETag, чтобы избежать загрузки неизменённых данных. Сервис-воркеры позволят сделать ваше приложение более независимым от сети и дадут доступ к [кэшированию кода в V8](https://v8project.blogspot.com/2015/07/code-caching.html). Узнайте о долгосрочном кэшировании — [хэширование имени файла](https://webpack.js.org/guides/caching/).
 
 <figure>
     <img src="images/2.png" alt="">
@@ -81,12 +81,12 @@ tags:
 
 Байты JavaScript и изображений имеют разную стоимость. Изображения обычно не блокируют основной поток или не препятствуют взаимодействию интерфейсов при декодировании и растеризации. Однако JS может задерживать взаимодействие с сайтом из-за парсинга, компиляции и выполнения.
 
-Когда мы говорим о медленном выполнении парсинга и компиляции, не стоит забывать, что мы рассматриваем среднестатистическое мобильное устройство. Однако многие пользователи могут иметь телефоны с медленными ЦП и графическими процессорами, без кэша L2 или L3 и могут быть ограничены памятью.
+Когда мы говорим о медленном выполнении парсинга и компиляции, не стоит забывать, что мы рассматриваем среднестатистическое мобильное устройство. Однако многие пользователи могут иметь телефоны с медленными ЦП и графическими процессорами, без кэша L2 или L3 и могут быть ограничены памятью.
 
 > Возможности сети и устройства не всегда совпадают. Пользователь с удивительно быстрым подключением не обязательно имеет лучший процессор для анализа и исполнения JavaScript, отправленного на его устройство. Это также верно и наоборот: ужасное сетевое подключение, но невероятно быстрый процессор.
 > Кристофер Бакстер, LinkedIn
 
-При проведении тестов скорости JavaScript, я замерял стоимость парсинга ≈1 МБ обычного (несжатого) JavaScript на медленных и высокопроизводительных устройствах. Среднестатистическое устройство тратит на парсинг и компиляцию кода в 2–5 раз больше времени, чем флагманские устройства.
+При проведении тестов скорости JavaScript, я замерял стоимость парсинга ≈1 МБ обычного (несжатого) JavaScript на медленных и высокопроизводительных устройствах. Среднестатистическое устройство тратит на парсинг и компиляцию кода в 2–5 раз больше времени, чем флагманские устройства.
 
 <figure>
     <img src="images/8.png" alt="Время парсинга для 1Мб JS бандла (≈250KB gzip) на настольных и мобильных устройствах различных классов.">
@@ -108,7 +108,7 @@ iPhone 8 потребуется для этого всего 4 секунды,
     <img src="images/10.png" alt="">
 </figure>
 
-Аналитика поможет вам определить какой тип мобильных устройств используют посетители вашего сайта. Это позволит вам понять реальные ограничения ЦП и ГП, с которыми они работают.
+Аналитика поможет вам определить какой тип мобильных устройств используют посетители вашего сайта. Это позволит вам понять реальные ограничения ЦП и ГП, с которыми они работают.
 
 А мы точно отправляем слишком много JavaScript? Может я ошибся :)
 
@@ -145,7 +145,7 @@ PRPL — это паттерн, основанный на агрессивно
     <img src="images/13.png" alt="">
 </figure>
 
-Давайте наглядно посмотрим, насколько это улучшит производительность. Проанализируем время загрузки популярных мобильных сайтов и прогрессивных веб-приложений, используя статистику вызовов V8 в рантайме. Как мы видим, на парсинг (показано оранжевым цветом) браузеры тратят значительную часть времени:
+Давайте наглядно посмотрим, насколько это улучшит производительность. Проанализируем время загрузки популярных мобильных сайтов и прогрессивных веб-приложений, используя статистику вызовов V8 в рантайме. Как мы видим, на парсинг (показано оранжевым цветом) браузеры тратят значительную часть времени:
 
 <figure>
     <img src="images/14.png" alt="">
@@ -181,7 +181,7 @@ JavaScript может влиять на производительность с
 
 ### Подведём итоги
 
-Размер передаваемой информации критически важен для сетей с медленной скоростью. Время парсинга важно для устройств, со слабым ГП. Запомните это.
+Размер передаваемой информации критически важен для сетей с медленной скоростью. Время парсинга важно для устройств, со слабым ГП. Запомните это.
 
 Команды разработчиков добиваются успеха устанавливая для себя жёсткие ограничения производительности (бюджет быстродействия), соблюдение которых заключается в минимизации затрат на передачу, парсинг и компиляцию JS-кода. Читайте «[Can You Afford It? Real-world Web Performance Budgets](https://infrequently.org/2017/10/can-you-afford-it-real-world-web-performance-budgets/)» Алекса Рассела для более подробного изучения темы.
 

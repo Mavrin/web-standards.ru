@@ -149,7 +149,7 @@ const postUrls = await page.$$eval(
 );
 ```
 
-Мы определяем селектор и используем `waitForSelector()` чтобы все DOM-узлы были доступны. После, мы используем [`page.$$eval(selector, pageFunction[,...args])`](https://github.com/GoogleChrome/puppeteer/blob/v1.11.0/docs/api.md#pageevalselector-pagefunction-args), который запускает `Array.from(document.querySelectorAll(selector))` для всей страницы и передаёт полученное первым аргументом в `pageFunction`. И наконец, мы используем метод `map()` для получения ссылок на страницы из атрибута `href`. Отлично, у нас есть массив со всеми нужными ссылками!
+Мы определяем селектор и используем `waitForSelector()` чтобы все DOM-узлы были доступны. После, мы используем [`page.$$eval(selector, pageFunction[,...args])`](https://github.com/GoogleChrome/puppeteer/blob/v1.11.0/docs/api.md#pageevalselector-pagefunction-args), который запускает `Array.from(document.querySelectorAll(selector))` для всей страницы и передаёт полученное первым аргументом в `pageFunction`. И наконец, мы используем метод `map()` для получения ссылок на страницы из атрибута `href`. Отлично, у нас есть массив со всеми нужными ссылками!
 
 Теперь, самое время для того, чтобы открыть все ссылки, одну за другой, и получить данные (заголовок, контент, `pathname`), которые нам нужны.
 
@@ -187,9 +187,9 @@ for (let postUrl of postUrls) {
 }
 ```
 
-Мы перебираем массив ссылок `postUrls` и используем `page.goto()` для перехода по каждому URL. Чтобы получить `pathname` которое мы будем использовать позже, для того, чтобы сохранить файл, мы используем `page.evaluate()` чтобы получить `pathname` из `window.location`. Мы также заменяем слэши `/` на дефисы `-`, чтобы имена файлов были валидными.
+Мы перебираем массив ссылок `postUrls` и используем `page.goto()` для перехода по каждому URL. Чтобы получить `pathname` которое мы будем использовать позже, для того, чтобы сохранить файл, мы используем `page.evaluate()` чтобы получить `pathname` из `window.location`. Мы также заменяем слэши `/` на дефисы `-`, чтобы имена файлов были валидными.
 
-Следующий этап — заголовок статьи. Определяем селектор (в моём случае, это — `.article h`), и, снова используя `page.waitForSelector()`, ждём, чтобы всё загрузилось и получаем `outerHTML` заголовка с помощью `page.$eval()`. Позже мы сможем преобразовать этот HTML в markdown, с помощью HTML-to-Markdown API.
+Следующий этап — заголовок статьи. Определяем селектор (в моём случае, это — `.article h`), и, снова используя `page.waitForSelector()`, ждём, чтобы всё загрузилось и получаем `outerHTML` заголовка с помощью `page.$eval()`. Позже мы сможем преобразовать этот HTML в markdown, с помощью HTML-to-Markdown API.
 
 Ну и наконец, мы можем получить основной контент статьи. Определяем ещё одни селектор (в моём случае, это — `.article .entry-content`), снова используем `page.waitForSelector()`, и получаем `innerHTML` контента статьи с помощью `page.$eval()`.
 
@@ -197,7 +197,7 @@ for (let postUrl of postUrls) {
 
 ## Конвертация в Markdown
 
-Что же, у нас есть все необходимые данные. На следующем шаге, мы будем использовать [Turndown](https://github.com/domchristie/turndown) для конвертации HTML в Markdown.
+Что же, у нас есть все необходимые данные. На следующем шаге, мы будем использовать [Turndown](https://github.com/domchristie/turndown) для конвертации HTML в Markdown.
 
 ```js
 const puppeteer = require('puppeteer');
@@ -280,7 +280,7 @@ const turndownService = new TurndownService();
 ```
 
 Сначала, нам нужно установить Turndow, запустив в консоли `npm install turndown`. Потом мы подключаем его в начале index.js и определяем как сервис `const turndownService = new TurndownService();`
-Теперь, нам всего лишь надо добавить `let pageContentMarkdown = turndownService.turndown(pageTitle + pageContent);` после той части, где мы определили `pageTitle` и `pageContent`, и вуаля: у нас есть наш HTML преобразованный в Markdown
+Теперь, нам всего лишь надо добавить `let pageContentMarkdown = turndownService.turndown(pageTitle + pageContent);` после той части, где мы определили `pageTitle` и `pageContent`, и вуаля: у нас есть наш HTML преобразованный в Markdown
 
 ### Сохранение файлов Markdown
 
@@ -406,6 +406,6 @@ fs.writeFile(postsDirectory + pagePathname + '.md', pageContentMarkdown, (err) =
 });
 ```
 
-Здесь мы используем `fs.writeFile()`. Мы хотим сохранить наши файлы в папке `/posts/`, используя `pathname` из переменной `pagePathname` как имена файлов, и `.md` как расширение. Это будет первым аргументом в функции `writeFile()`. Вторым аргументом мы передадим `pageContentMarkdown`, в котором лежит полученный Markdown в формате `String`. Если всё пройдёт без ошибок, мы получими статьи в формате Markdown, сохранённые одна за другой. Да, мы сделали это!
+Здесь мы используем `fs.writeFile()`. Мы хотим сохранить наши файлы в папке `/posts/`, используя `pathname` из переменной `pagePathname` как имена файлов, и `.md` как расширение. Это будет первым аргументом в функции `writeFile()`. Вторым аргументом мы передадим `pageContentMarkdown`, в котором лежит полученный Markdown в формате `String`. Если всё пройдёт без ошибок, мы получими статьи в формате Markdown, сохранённые одна за другой. Да, мы сделали это!
 
-Я надеюсь, эта статья вас чему-то научила, и, возможно, вы в будущем тоже решите использовать Puppeteer для чего-нибудь интересного. Если вам любопытно, посмотрите финальный код на [Гитхабе](https://github.com/justmarkup/html-posts-to-markdown/blob/master/index.js).
+Я надеюсь, эта статья вас чему-то научила, и, возможно, вы в будущем тоже решите использовать Puppeteer для чего-нибудь интересного. Если вам любопытно, посмотрите финальный код на [Гитхабе](https://github.com/justmarkup/html-posts-to-markdown/blob/master/index.js).
