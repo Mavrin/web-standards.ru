@@ -30,19 +30,19 @@ tags:
 **N.B.** Чтобы эта статья была полезной, вам все-таки нужно немножко знать о быстродействии, но все незнакомые термины, которые будут упоминаться в этой статье, очень легко нагуглить!
 
 1. [Принципы](#section:the-basics)
-   1. [Стили наверху, скрипты внизу](#section:styles-at-the-top-scripts-at-the-bottom)
-   2. [Делайте меньше запросов](#section:make-fewer-requests)
-   3. [Максимальная параллелизация](#section:maximising-parallelisation)
+    1. [Стили наверху, скрипты внизу](#section:styles-at-the-top-scripts-at-the-bottom)
+    2. [Делайте меньше запросов](#section:make-fewer-requests)
+    3. [Максимальная параллелизация](#section:maximising-parallelisation)
 2. [HTTP-запросы и поиск DNS](#section:http-requests-and-dns-lookups)
-   1. [Предзагрузка DNS](#section:dns-prefetching)
+    1. [Предзагрузка DNS](#section:dns-prefetching)
 3. [Предзагрузка ресурсов](#section:resource-prefetching)
 4. [CSS и быстродействие](#section:css-and-performance)
 5. [Минификация и gzip](#section:gzipping-and-minifying)
 6. [Оптимизация изображений](#section:optimising-images)
-   1. [Спрайты](#section:spriting)
-   2. [Изображения для ретины](#section:retina-images)
-   3. [JPG с прогрессивной загрузкой](#section:progressive-jpgs)
-   4. [Не используйте изображения вообще](#section:use-no-images-at-all)
+    1. [Спрайты](#section:spriting)
+    2. [Изображения для ретины](#section:retina-images)
+    3. [JPG с прогрессивной загрузкой](#section:progressive-jpgs)
+    4. [Не используйте изображения вообще](#section:use-no-images-at-all)
 7. [Дальнейшее чтение](#section:further-reading)
 
 ## Принципы
