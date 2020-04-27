@@ -41,7 +41,7 @@ module.exports = {
         "strong": "*",
         "bullet": "-",
         "incrementListMarker": true,
-        "listItemIndent": "1",
+        "listItemIndent": "mixed",
         "fences": true
     },
     "plugins": [

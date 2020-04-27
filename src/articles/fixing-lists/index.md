@@ -152,8 +152,7 @@ ul {
 > - Users before,
 > - Web Authors/Devs before,
 > - Browser Implementers before,
-> - Spec authors.
->   [James Craig @cookiecrook](https://twitter.com/cookiecrook/status/1084141791580905472)
+> - Spec authors. [James Craig @cookiecrook](https://twitter.com/cookiecrook/status/1084141791580905472)
 >
 > This decision was all about the users’ experience on the majority of pages where web developers are not paying attention to the screen reader experience. Definitely open to change suggestions (including updating the heuristic) that make it better for authors w/o penalizing users.
 > [James Craig @cookiecrook](https://twitter.com/cookiecrook/status/1084142936583892992)
@@ -164,7 +163,6 @@ ul {
 > - до авторов и разработчиков,
 > - до авторов и разработчиков,
 > - до разработчиков браузеров,
-> - до авторов спецификаций.
->   Это всё нужно для удобства пользователей, ведь сегодня на большинстве сайтов разработчики не уделяют внимание удобству скринридеров. Разумеется, я открыт для предложений по внесению изменений (включая обновление эвристики), которые сделают жизнь авторов лучше без ухудшения положения пользователей.
+> - до авторов спецификаций. Это всё нужно для удобства пользователей, ведь сегодня на большинстве сайтов разработчики не уделяют внимание удобству скринридеров. Разумеется, я открыт для предложений по внесению изменений (включая обновление эвристики), которые сделают жизнь авторов лучше без ухудшения положения пользователей.
 
 Так что замечания и комментарии приветствуются :)
